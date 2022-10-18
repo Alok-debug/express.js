@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.use((req, res, next) => {
     
-    res.send('<h1>Page not found: 404 </h1>'); 
+    res.send('<h2>Page not found: 404 </h2>'); 
 })
 
 
