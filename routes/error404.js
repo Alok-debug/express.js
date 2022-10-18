@@ -1,9 +1,9 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 
 router.use((req, res, next) => {
-    
-    res.send('<h2>Page not found: 404 </h2>'); 
+    res.sendFile(path.join(__dirname, "../", "views", "error404.html"));
 })
 
 
