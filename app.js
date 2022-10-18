@@ -1,20 +1,18 @@
-//const http = require('http');
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();    //-----> it is a exported function
 
-//app.use( function(res,req,next) or array of arguments); // use allows to add middleware functions and it pretty flexible in accepting arguments.
-app.use('/add-product',(req, res, next) => {
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">SUBMIT</button></form>');
-});
-app.use('/products',(req, res, next) => {
-    //res.send('<h1>Here products will be displayed</h1>');
-    console.log(req.body);
-    res.redirect('/')
-});
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+const errorRoutes = require('./routes/error404');
 
-app.use('/', (req, res, next) => {
-    res.send('<h1> hello to node js </h1>');
-});
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(adminRoutes);
+app.use(shopRoutes);
+app.use(errorRoutes);
 
 app.listen(4000, ()=>console.log('server is runnng'));
 // const server = http.createServer(app);
